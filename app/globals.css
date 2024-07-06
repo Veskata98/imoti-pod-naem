@@ -4,6 +4,8 @@
 
 html,
 body {
-    width: 100%;
+    --tw-bg-opacity: 1;
+    background-color: white;
     height: 100%;
+    width: 100%;
 }

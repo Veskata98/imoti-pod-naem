@@ -1,20 +1,20 @@
 import Link from 'next/link';
-import { LoginBtn } from './LoginBtn';
-import { auth } from '@/app/api/auth/[...nextauth]/route';
+import { auth } from '@/lib/auth';
+
 import { UserBanner } from './UserBanner';
 
 export const Navbar = async () => {
     const session = await auth();
 
     return (
-        <nav className="py-4 px-8 bg-sky-300">
-            <div className="w-full lg:w-2/3 mx-auto">
-                <div className="flex justify-between items-center">
+        <nav className="h-[56px] bg-primary-300 px-8">
+            <div className="w-full lg:w-2/3 mx-auto h-full">
+                <div className="flex justify-between items-center h-full">
                     <Link href="/" className="font-semibold text-xl">
                         RentHome
                     </Link>
 
-                    {session?.user ? <UserBanner user={session.user} /> : <LoginBtn />}
+                    {session?.user ? <UserBanner user={session.user} /> : <Link href="/login">Sign In</Link>}
                 </div>
             </div>
         </nav>
