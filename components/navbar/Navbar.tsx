@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { auth } from '@/lib/auth';
 
-import { UserBanner } from './UserBanner';
+import { UserButton } from './navbar-user/UserButton';
 
 import { LoginRedirectBtn } from './LoginRedirectBtn';
 
@@ -18,7 +18,7 @@ export const Navbar = async () => {
                         RentHome
                     </Link>
 
-                    {session?.user ? <UserBanner user={session.user} /> : <LoginRedirectBtn />}
+                    {session?.user ? <UserButton user={session.user} /> : <LoginRedirectBtn />}
                 </div>
             </div>
         </nav>
