@@ -10,7 +10,7 @@ export const LoginRedirectBtn = () => {
     return (
         <Link
             href="/auth"
-            className="flex gap-1 items-center relative"
+            className="flex gap-1 items-center relative font-semibold"
             onMouseEnter={() => setShowArrow(true)}
             onMouseLeave={() => setShowArrow(false)}
         >

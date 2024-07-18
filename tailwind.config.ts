@@ -10,17 +10,17 @@ const config: Config = {
         extend: {
             colors: {
                 primary: {
-                    '50': '#f0f9ff', // Light sky blue
-                    '100': '#e0f2fe', // Light sky blue
-                    '200': '#bae6fd', // Light sky blue
-                    '300': '#7dd3fc', // Light sky blue
-                    '400': '#38bdf8', // Light sky blue
-                    '500': '#0ea5e9', // Sky blue
-                    '600': '#0284c7', // Sky blue
-                    '700': '#0369a1', // Darker sky blue
-                    '800': '#075985', // Darker sky blue
-                    '900': '#0c4a6e', // Dark sky blue
-                    '950': '#082f49', // Very dark sky blue
+                    '50': '#fdfdf0', // Very light yellow
+                    '100': '#fcfcd9', // Light yellow
+                    '200': '#fafab3', // Light yellow
+                    '300': '#f7f78d', // Light yellow
+                    '400': '#f5f568', // Yellow
+                    '500': '#f0f0d0', // Base yellow (original color)
+                    '600': '#d3d3a3', // Slightly darker yellow
+                    '700': '#b7b778', // Darker yellow
+                    '800': '#9b9b50', // Dark yellow
+                    '900': '#7f7f2d', // Very dark yellow
+                    '950': '#666619', // Extremely dark yellow
                 },
             },
             backgroundImage: {

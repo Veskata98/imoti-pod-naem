@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
-import { User } from 'next-auth';
+
 import { LogOut, Settings } from 'lucide-react';
 import { signOut } from 'next-auth/react';
 
-type UserModalProps = {
+type UserActionsProps = {
     isOpen: boolean;
     onClose: () => void;
 };
 
-export const UserModal = ({ isOpen, onClose }: UserModalProps) => {
+export const UserActions = ({ isOpen, onClose }: UserActionsProps) => {
     useEffect(() => {
         const handleEscape = (event: KeyboardEvent) => {
             if (event.key === 'Escape') {

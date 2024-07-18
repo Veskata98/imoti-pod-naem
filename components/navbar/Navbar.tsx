@@ -11,7 +11,7 @@ export const Navbar = async () => {
     console.log(session?.user);
 
     return (
-        <nav className="h-[56px] bg-primary-300 px-8">
+        <nav className="h-[56px] bg-primary-500 px-8">
             <div className="w-full lg:w-2/3 mx-auto h-full">
                 <div className="flex justify-between items-center h-full">
                     <Link href="/" className="font-semibold text-xl">

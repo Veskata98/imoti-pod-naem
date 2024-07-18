@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { User } from 'next-auth';
 import { useEffect, useRef, useState } from 'react';
-import { UserModal } from './UserModal';
+import { UserActions } from './UserActions';
 
 export const UserButton = ({ user }: { user: User }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,7 +34,7 @@ export const UserButton = ({ user }: { user: User }) => {
                 </div>
                 <p className="font-semibold text-sm">{user.name?.split(' ').shift()}</p>
             </button>
-            <UserModal isOpen={isModalOpen} onClose={onClose} />
+            <UserActions isOpen={isModalOpen} onClose={onClose} />
         </div>
     );
 };
