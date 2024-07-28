@@ -8,8 +8,6 @@ import { LoginRedirectBtn } from './LoginRedirectBtn';
 export const Navbar = async () => {
     const session = await auth();
 
-    console.log(session?.user);
-
     return (
         <nav className="h-[56px] bg-primary-500 px-8">
             <div className="w-full lg:w-2/3 mx-auto h-full">

@@ -5,13 +5,13 @@ import Image from 'next/image';
 import { User } from 'next-auth';
 import { signOut } from 'next-auth/react';
 
-type UserActionsProps = {
+type UserModalProps = {
     isOpen: boolean;
     onClose: () => void;
     user: User;
 };
 
-export const UserActions = ({ isOpen, onClose, user }: UserActionsProps) => {
+export const UserModal = ({ isOpen, onClose, user }: UserModalProps) => {
     const onBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
         if (e.target === e.currentTarget) {
             onClose();
@@ -40,7 +40,7 @@ export const UserActions = ({ isOpen, onClose, user }: UserActionsProps) => {
         >
             <div className="bg-white mx-8 p-8 w-full md:w-2/4 lg:w-1/3 max-w-[460px] rounded shadow-sm flex flex-col items-center">
                 <div className="w-40 h-40 relative">
-                    <Image src={user.image || '/no-avatar.png'} alt="" fill className="rounded-md shadow" />
+                    <Image src={user.image || '/no-avatar.png'} alt="" fill className="rounded-md shadow p-2" />
                 </div>
                 <p className="font-semibold">{user.name}</p>
                 <div>
