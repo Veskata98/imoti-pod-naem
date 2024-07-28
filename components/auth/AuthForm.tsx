@@ -38,7 +38,7 @@ export const AuthForm = () => {
                                     </button>
                                 </div>
                                 <div
-                                    className={`absolute top-full mt-1 h-1 bg-primary-500 transition-transform duration-300 ${
+                                    className={`absolute top-full mt-1 h-1 bg-primary-600 transition-transform duration-300 ${
                                         isLogin ? 'translate-x-0' : 'translate-x-full'
                                     }`}
                                     style={{ width: '50%' }}
@@ -88,7 +88,7 @@ export const AuthForm = () => {
                             </div>
                             <button
                                 type="submit"
-                                className="w-full text-white bg-primary-500 hover:bg-primary-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                className="w-full text-black bg-primary-500 hover:bg-primary-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                             >
                                 {isLogin ? 'Влизане' : 'Регистрация'}
                             </button>

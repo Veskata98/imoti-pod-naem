@@ -34,7 +34,7 @@ export const UserButton = ({ user }: { user: User }) => {
                 </div>
                 <p className="font-semibold text-sm">{user.name?.split(' ').shift()}</p>
             </button>
-            <UserActions isOpen={isModalOpen} onClose={onClose} />
+            <UserActions isOpen={isModalOpen} onClose={onClose} user={user} />
         </div>
     );
 };
