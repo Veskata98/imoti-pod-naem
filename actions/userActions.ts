@@ -39,19 +39,39 @@ export const registerWithCredentials = async (formData: FormData) => {
         const zodResult = RegisterSchema.safeParse({ email, username, password, confirm_password });
 
         if (!zodResult.success) {
-            const resultObj: { [x: string]: string } = {};
-            zodResult.error.errors.map((error) => (resultObj[error.path[0]] = error.message));
-            return resultObj;
+            const errorsObj: { [x: string]: string } = {};
+            zodResult.error.errors.map((error) => (errorsObj[error.path[0]] = error.message));
+            return { success: false, errors: errorsObj };
         }
 
         if (password !== confirm_password) {
-            return { ['confirm_password']: 'Паролите не съвпадат' };
+            return { success: false, errors: { ['confirm_password']: 'Паролите не съвпадат' } };
+        }
+
+        const alreadyRegistered = await prisma.user.findFirst({
+            where: {
+                OR: [{ email: email }, { name: username }],
+            },
+            select: {
+                email: true,
+                name: true,
+            },
+        });
+
+        if (alreadyRegistered) {
+            if (alreadyRegistered.email === email) {
+                return { success: false, errors: { email: 'Този имейл вече съществува' } };
+            } else if (alreadyRegistered.name === username) {
+                return { success: false, errors: { username: 'Това потребителско име вече съществува' } };
+            }
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
         await prisma.user.create({ data: { email, name: username, password: hashedPassword } });
+        return { success: true, errors: null };
     } catch (error) {
-        return;
+        console.log('[REGISTER_USER]Server Error');
+        return { success: false, errors: { server: 'Something went wrong' } };
     }
 };

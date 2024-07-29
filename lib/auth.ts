@@ -26,11 +26,13 @@ export const {
         }),
         credentials({
             credentials: {
+                email: {},
                 username: {},
                 password: {},
             },
             async authorize(credentials, req) {
-                const username = (credentials.username as string).toLowerCase();
+                const username =
+                    (credentials.username as string)?.toLowerCase() || (credentials.email as string)?.toLowerCase();
                 const password = credentials.password as string;
 
                 const user = await prisma.user.findFirst({

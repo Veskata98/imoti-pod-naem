@@ -1,24 +1,34 @@
 import { registerWithCredentials } from '@/actions/userActions';
 import { cn } from '@/lib/utils';
 import { Eye, EyeOff } from 'lucide-react';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export const RegisterForm = () => {
+    const router = useRouter();
     const [showPassword, setShowPassword] = useState(false);
     const [showEyeIcon, setShowEyeIcon] = useState(false);
 
     const [password, setPassword] = useState('');
 
-    const [errors, setErrors] = useState<{ [x: string]: string } | void>();
+    const [errors, setErrors] = useState<{ [x: string]: string } | null>(null);
 
     return (
         <form
             className="flex flex-col gap-4"
             action={async (formData: FormData) => {
                 const result = await registerWithCredentials(formData);
-                setErrors(result);
+                if (result.success) {
+                    signIn('credentials', { email: formData.get('email'), password: formData.get('password') });
+                    router.replace('/');
+                    router.refresh();
+                } else {
+                    setErrors(result.errors);
+                }
             }}
         >
+            {errors?.server && <p className="font-semibold text-xs mt-1 text-rose-500">{errors.server}</p>}
             <div>
                 <input
                     type="email"
@@ -38,7 +48,7 @@ export const RegisterForm = () => {
                     name="username"
                     className={cn(
                         '"bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 focus:outline-none"',
-                        errors?.email && 'border-rose-500'
+                        errors?.username && 'border-rose-500'
                     )}
                     placeholder="Потребителско Име"
                     required
@@ -58,7 +68,7 @@ export const RegisterForm = () => {
                         placeholder="Парола"
                         className={cn(
                             '"bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 focus:outline-none"',
-                            errors?.email && 'border-rose-500'
+                            errors?.password && 'border-rose-500'
                         )}
                         required
                     />
@@ -88,7 +98,7 @@ export const RegisterForm = () => {
                         placeholder="Повтори паролата"
                         className={cn(
                             '"bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 focus:outline-none"',
-                            errors?.email && 'border-rose-500'
+                            errors?.confirm_password && 'border-rose-500'
                         )}
                         required
                     />

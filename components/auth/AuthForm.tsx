@@ -12,8 +12,6 @@ export const AuthForm = () => {
 
     const toggleAuthMode = () => {
         setIsLogin((prevIsLogin) => !prevIsLogin);
-        // setPassword('');
-        // setErrors();
     };
 
     return (
