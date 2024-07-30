@@ -16,7 +16,7 @@ export const AuthForm = () => {
 
     return (
         <section className="flex-1 w-full h-full">
-            <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-full lg:py-0">
+            <div className="flex flex-col items-center justify-center px-2 sm:px-6 py-8 mx-auto md:h-full lg:py-0">
                 <div className="w-full bg-white rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0">
                     <div className="p-6 space-y-6 sm:p-8">
                         <div className="flex justify-center mb-8">

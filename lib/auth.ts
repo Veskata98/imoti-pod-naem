@@ -11,7 +11,7 @@ export const {
     auth,
     handlers: { GET, POST },
 } = NextAuth({
-    session: { strategy: 'jwt' },
+    session: { strategy: 'jwt', maxAge: 60 },
     providers: [
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -40,7 +40,6 @@ export const {
                 });
 
                 const comparePassword = await bcrypt.compare(password, user?.password || '');
-                console.log(comparePassword);
 
                 if (comparePassword) {
                     // Any object returned will be saved in `user` property of the JWT
@@ -63,8 +62,13 @@ export const {
         async signIn({ user, account }) {
             if (account?.provider === 'google') {
                 await createDBUserFromOAuth(user);
-                return true;
             }
+
+            return true;
+        },
+        async authorized({ request, auth }) {
+            const url = request.nextUrl;
+            console.log(url, auth);
 
             return true;
         },
